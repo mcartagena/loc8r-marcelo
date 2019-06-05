@@ -176,5 +176,35 @@ module.exports.locationsUpdateOne = function (req, res) {
 };
 
 module.exports.locationsDeleteOne = function (req, res) {
-    sendJsonResponse(res, 200, { "status": "success" });
+    var locationid = req.params.locationid;
+    if (locationid) {
+        Loc
+            .findByIdAndRemove(locationid)
+            .exec(
+                function (err, location) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                        return;
+                    }
+                    sendJsonResponse(res, 204, null);
+                }
+            );
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No locationid"
+        });
+    }
+
+    /* another way just in case for some modification */
+    /*
+    Loc
+        .findById(locationid)
+        .exec(
+            function (err, location) {
+                // Do something with the document
+                Loc.remove(function (err, location) {
+                    // Confirm success or failure
+                });
+            }
+        ); */         
 };
