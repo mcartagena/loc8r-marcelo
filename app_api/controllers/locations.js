@@ -63,7 +63,7 @@ module.exports.locationsListByDistance = function (req, res) {
         coordinates: [lng, lat]
     };
 
-    if (!lng || !lat) {
+    if ((!lng && lng !== 0) || (!lat && lat !== 0)) {
         sendJsonResponse(res, 400, {
             "message": "lng and lat query parameters are required"
         });
@@ -165,7 +165,9 @@ module.exports.locationsUpdateOne = function (req, res) {
                     closed: req.body.closed2,
                 }];
                 location.save(function (err, location) {
+                    var thisReview;
                     if (err) {
+                        console.log(err); 
                         sendJsonResponse(res, 404, err);
                     } else {
                         sendJsonResponse(res, 200, location);
@@ -206,5 +208,5 @@ module.exports.locationsDeleteOne = function (req, res) {
                     // Confirm success or failure
                 });
             }
-        ); */         
+        ); */
 };
