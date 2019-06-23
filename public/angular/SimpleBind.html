@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html  ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular binding test</title>
+    <script src="angular.min.js"></script>
+    <script src="simpleBindApp.js"></script>
+</head>
+
+<body ng-controller="myController">
+    <input ng-model="myInput" />
+    <h1>Hello {{ myInput }}</h1>
+    <h2>Pruebas de filters</h2>
+    <div>{{ 123.2345 | currency }}</div>
+    <div>{{ 123.2345 + 321.321 | currency:"£" }}</div>
+    <div>{{ "Let's shout" | uppercase }}</div>
+    <div>fecha {{ timestamp | date:"d MMM yyyy" }}</div>
+</body>
+
+</html>
