@@ -51,16 +51,19 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="panel panel-primary review-panel">
-                        <div class="panel-heading"><a href="" class="btn btn-default pull-right">Add review</a>
+                        <div class="panel-heading">
+                            <a ng-click="vm.popupReviewForm()" class="btn btn-default pull-right">Add review</a>
                             <h2 class="panel-title">Customer reviews</h2>
                         </div>
                         <div class="panel-body review-container">
-                            <div class="review" ng-repeat="review in vm.data.location.reviews | orderBy:'createdOn':true">
+                            <div class="review"
+                                ng-repeat="review in vm.data.location.reviews | orderBy:'createdOn':true">
                                 <div class="row">
                                     <div class="well well-sm review-header">
                                         <span class="rating" rating-stars rating="review.rating"></span>
                                         <span class="reviewAuthor">{{ review.author }}</span>
-                                        <small class="reviewTimestamp">{{ review.createdOn  | date : 'd MMMM yyyy' }}</small>
+                                        <small
+                                            class="reviewTimestamp">{{ review.createdOn  | date : 'd MMMM yyyy' }}</small>
                                     </div>
                                     <div class="col-xs-12">
                                         <p ng-bind-html="review.reviewText | addHtmlLineBreaks"></p>
