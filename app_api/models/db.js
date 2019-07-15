@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+require('./users');
 
 var gracefulShutdown;
 

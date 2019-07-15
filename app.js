@@ -1,9 +1,12 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 require('./app_api/models/db');
+require('./app_api/config/passport'); 
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
 
@@ -47,6 +50,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
+
+app.use(passport.initialize());
 
 // app.use('/', indexRouter);
 app.use('/api', routesApi);
